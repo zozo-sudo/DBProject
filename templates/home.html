@@ -18,11 +18,11 @@
         </style>
     </head>
     <body>
+        <form method='POST'>
         {% for item in items %}
-        <h1> {{ item.cID }}</h1> <br>
-        {% for item in items %}
-            {{ item.VAHName }} <br>
+            {{ item.cName }} : {{ item.VAHName }}, D-{{item.DeadLine}},{{item.Decision}} <input type='submit'name="{{item.VAHName}}" value="done"> <br>
         {% endfor %}
-        {% endfor %}
+    </form>
     </body>
+
 </html>
