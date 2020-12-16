@@ -7,6 +7,10 @@
                 text-align: center;
                 color: white;
             }
+            h3{
+                background-color: blue;
+                color: white;
+            }
             .article{
                 text-align: center;
                 width: 300px;
@@ -18,11 +22,11 @@
         </style>
     </head>
     <body>
-        <form method='POST'>
-        {% for item in items %}
-            {{ item.cName }} : {{ item.VAHName }}, D-{{item.DeadLine}},{{item.Decision}} <input type='submit'name="{{item.VAHName}}" value="done"> <br>
-        {% endfor %}
-    </form>
+        
+            {% for item in items %}
+            <form method='POST'>
+                <h3>{{ item.cName }} </h3> {{ item.VAHName }}, D-{{item.DeadLine}},{{item.Decision}} <input type='submit'name="{{item.VAHName}}" value="done"> <input type='submit'name="{{item.VAHName}}2" value="X"><br>
+            {% endfor %}
     </body>
 
 </html>

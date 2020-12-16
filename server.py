@@ -63,47 +63,38 @@ def home(sID):
             'SELECT Decision FROM VideoAndHomework, Class WHERE sID=? and VideoAndHomework.cID = Class.cID',(sID,)
         ).fetchall()
         count = 0
+        
+        
+
+
         for VAH in VAHs:
             
-            #print(Decisions)
+            if request.form.get(VAH + "2"):
+                c.execute(
+                    'DELETE FROM VideoAndHomework WHERE sID=? and VAHName=?',(sID, VAH,)
+                )  
+                db2.commit()
+            
             if request.form.get(VAH):
                 if Decisions[count] == 'Y':
-
                     c.execute(
                         """UPDATE VideoAndHomework set Decision='N' where VAHName=?""",(VAH,)
                     )
                     db2.commit()
-                    print(count)
-                    print("Y로 변경")
                 elif Decisions[count] == 'N':
-
                     c.execute(
                         """UPDATE VideoAndHomework set Decision='Y' where VAHName=?""",(VAH,)
                     )
                     db2.commit()
-                    print(count)
-                    print("N으로 변경")
-                #print(VAH)
+               
             count = count + 1
         
-        # Decisions = db.execute(
-        #     'SELECT Decision FROM VideoAndHomework, Class WHERE sID=? and VideoAndHomework.cID = Class.cID',(sID,)
-        # ).fetchall()
-        # print(Decisions[0][0])
         db2.close()
-        # submit = request.form["학기프로젝트"]
-        # print(VAH)
-        # print(submit)
-        
-        # db.execute(
-        #     'UPDATE VideoAndHomework SET dicision = "Y" WHERE sID'
-        # )
 
     items = db.execute(
         'SELECT VAHName, Class.cID,cName,Decision,DeadLine FROM VideoAndHomework, Class WHERE sID=? and VideoAndHomework.cID = Class.cID',(sID,)
     ).fetchall()
 
-    
     db.close()
     return render_template('home.html', items= items)
 

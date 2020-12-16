@@ -7,6 +7,7 @@
                 text-align: center;
                 color: white;
             }
+            
             .article{
                 text-align: center;
                 width: 300px;
@@ -18,15 +19,16 @@
         </style>
     </head>
     <body>
-        <h1><img src="INU.png" alt="My image",width=30>INU Todo List!</h1>
-    
+        {%if True%}
+        <h1><img src="{{'images/INU.png'}}" height="40" alt="My image">INU TODO LIST</h1>
+        {%endif%}
         <div class='article'>
             <form action='/login/check' method='POST'> 
                 <br/>
                 <label>ID</label>
                 <input id='sID' type='text' name='sID'/> <br/>
                 <label>PW</label>
-                <input id='PW' type='text' name='PW'/> <br/>
+                <input id='PW' type='password' name='PW'/> <br/>
                 <input type='submit' value="login">
             </form>
          </div>
