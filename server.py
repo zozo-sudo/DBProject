@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, send_from_directory
 import sqlite3
 
 class Student:
@@ -97,6 +97,10 @@ def home(sID):
 
     db.close()
     return render_template('home.html', items= items)
+
+@app.route('/images/INU.png')
+def send_file():
+    return send_from_directory('images/','INU.png')
 
 
 if __name__ == '__main__':
